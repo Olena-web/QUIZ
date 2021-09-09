@@ -133,15 +133,29 @@ document.addEventListener("DOMContentLoaded", () => {
       formAnswers.innerHTML = "";
       questionTitle.textContent = `${questions[indexQuestion].question}`;
       renderAnswers(indexQuestion);
+      numberQuestion > 0
+        ? (prevBtn.style.display = "block")
+        : (prevBtn.style.display = "none");
+      numberQuestion < questions.length - 1
+        ? (nextBtn.style.display = "block")
+        : (nextBtn.style.display = "none");
     };
     renderQuestions(numberQuestion);
     nextBtn.onclick = () => {
-      numberQuestion++;
-      renderQuestions(numberQuestion);
+      if (numberQuestion === questions.length - 1) {
+        nextBtn.style = "display: none";
+      } else {
+        numberQuestion++;
+        renderQuestions(numberQuestion);
+      }
     };
     prevBtn.onclick = () => {
-      numberQuestion--;
-      renderQuestions(numberQuestion);
+      if (numberQuestion === 0) {
+        prevBtn.style = "display: none";
+      } else if (numberQuestion > 0) {
+        numberQuestion--;
+        renderQuestions(numberQuestion);
+      }
     };
   };
 });
