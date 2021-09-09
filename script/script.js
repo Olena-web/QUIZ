@@ -7,7 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const formAnswers = document.querySelector("#formAnswers");
   const prevBtn = document.querySelector("#prev");
   const nextBtn = document.querySelector("#next");
-
+  const burger = document.getElementById("burger");
+  if (document.documentElement.clientWidth < 768) {
+    burger.style.display = "flex";
+  } else {
+    burger.style.display = "none";
+  }
+  window.addEventListener("resize", () => {
+    if (document.documentElement.clientWidth < 768) {
+      burger.style.display = "flex";
+    } else {
+      burger.style.display = "none";
+    }
+  });
   const questions = [
     {
       question: "Какого цвета бургер?",
@@ -104,7 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
   //     obj[`${index}_${questions[numberQuestion].question}`] = elem.value;
   // })
   // finalAnswers.push(obj)
-
+  burger.addEventListener("click", () => {
+    modalBlock.classList.add("d-block");
+    playTest();
+  });
   btnOpenModal.addEventListener("click", () => {
     modalBlock.classList.add("d-block");
     playTest();
